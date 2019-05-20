@@ -18,7 +18,7 @@ workbox.routing.registerRoute(navigationRoute);*/
 
 workbox.routing.registerRoute(
   // Cache immutable files forever
-  /.*/,
+  /^[^?]+$/,
   // Use the cache if it's available
   workbox.strategies.networkFirst({
     cacheName: 'everything-network-first',

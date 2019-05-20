@@ -1,0 +1,14 @@
+{
+  "name": "in-venue",
+  "version": "1.0.0",
+  "description": "Screens at JSConf and CSSconf EU",
+  "main": "index.js",
+  "scripts": {
+    "server": "node node_modules/http-server/bin/http-server  -p 9876 -c-1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "http-server": "^0.11.1"
+  }
+}
