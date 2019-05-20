@@ -8,6 +8,12 @@ Content in this repo will be shown on the in-venue screens of JSConf/CSSconf EU 
 - Content on a given URL updates automatically.
 - You should never need to manually control a Raspi with a mouse or keyboard.
 
+## Design
+
+- The screen resolution is 1920x1080 (aka 1080p)
+- No need to be responsive, those are the exact pixels. Not more, not less (well except possible overscan at the edges).
+- Make sure all desired content actually fits that area since content cannot be scrolled.
+
 ## Updating content
 
 - For [bipocit-space](https://github.com/jsconf/in-venue.jsconf.eu/blob/gh-pages/bipocit-space/index.html) and [community-lounge](https://github.com/jsconf/in-venue.jsconf.eu/blob/gh-pages/community-lounge/index.html) there are stub files in the respective directories.
