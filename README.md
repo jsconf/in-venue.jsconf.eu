@@ -1,3 +1,5 @@
+## JSConf and CSSconf EU digital signage screens
+
 Content in this repo will be shown on the in-venue screens of JSConf/CSSconf EU 2019.
 
 - Each screen and Rasperry Pi has a number.
