@@ -7,7 +7,7 @@ Content in this repo will be shown on the in-venue screens of JSConf/CSSconf EU 
 
 ## Updating content
 
-- For bipocit-space and community-lounge there are stub files in the respective directories.
+- For [bipocit-space](https://github.com/jsconf/in-venue.jsconf.eu/blob/gh-pages/bipocit-space/index.html) and [community-lounge](https://github.com/jsconf/in-venue.jsconf.eu/blob/gh-pages/community-lounge/index.html) there are stub files in the respective directories.
 - Content auto-updates when you commit updates GitHub within about 1 minute.
 - If you changed JavaScript, update the `version` attribute on the `<html>` element, and the page will reload.
 
