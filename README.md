@@ -4,6 +4,9 @@ Content in this repo will be shown on the in-venue screens of JSConf/CSSconf EU 
 - See [index.html](https://github.com/jsconf/in-venue.jsconf.eu/blob/gh-pages/index.html) for how the number maps to a particular screen.
 - The `r/$number.html` file is automatically loaded onto the Rasperry Pi in fullscreen on startup.
 - Edit the appropriate `r/$number.html` to redirect to the URL that you'd like to show on the screen.
+- If you change a redirect, restart the respective Raspi.
+- Content on a given URL updates automatically.
+- You should never need to manually control a Raspi with a mouse or keyboard.
 
 ## Updating content
 
