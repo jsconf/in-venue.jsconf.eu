@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>JSConf EU preso iframe host</title>
+  <style>
+  body {
+    background-color: black;
+    margin: 0;
+  }
+  iframe {
+    border: 0;
+  }
+  #iframehost {
+    position: absolute;
+    top: 20px;
+    left: 0;
+    height: 1006px;
+    overflow: hidden;
+  }
+
+  .hidden {
+    display: none;
+  }
+  </style>
+  <script>
+  function toggleSlides() {
+    document.getElementById('iframehost').classList.toggle('hidden');
+  }
+  function grantFocus() {
+    document.getElementById('slides').contentWindow.focus();
+  }
+  </script>
+</head>
+<body>
+<button onclick="toggleSlides()">Toggle Slides</button> <button onclick="grantFocus()">Grant focus</button>
+<div id="iframehost">
+  <!-- Load then hide ASAP. Makes showing instant. -->
+  <iframe 
+      id="slides"
+      onload="this.parentElement.classList.add('hidden')"
+      src="https://docs.google.com/presentation/d/e/2PACX-1vTU8NNolXz4u6Z9IVxOACu43eBB8RaWVDMyTns1lNG_shPkemaMbXuP0QpLaeHr3j50HFM-D4hEAwFR/embed?start=false&loop=false&delayms=300000" 
+      frameborder="0"
+      width="8256" 
+      height="1035" 
+      allowfullscreen="true" 
+      mozallowfullscreen="true"
+      webkitallowfullscreen="true"></iframe>
+</div>
+</body>
+</html>
