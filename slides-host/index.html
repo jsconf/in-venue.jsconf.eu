@@ -25,15 +25,21 @@
   </style>
   <script>
   function toggleSlides() {
-    document.getElementById('iframehost').classList.toggle('hidden');
+    const host = document.getElementById('iframehost');
+    host.classList.toggle('hidden');
+    if (!host.classList.contains('hidden')) {
+      grantFocus();
+    }
   }
   function grantFocus() {
-    document.getElementById('slides').contentWindow.focus();
+    setTimeout(function() {
+      document.getElementById('slides').contentWindow.focus();
+    }, 0);
   }
   </script>
 </head>
 <body>
-<button onclick="toggleSlides()">Toggle Slides</button> <button onclick="grantFocus()">Grant focus</button>
+<button onclick="toggleSlides()">Toggle Slides</button>
 <div id="iframehost">
   <!-- Load then hide ASAP. Makes showing instant. -->
   <iframe 
