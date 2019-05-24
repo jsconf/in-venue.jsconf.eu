@@ -31,7 +31,23 @@ navigator.serviceWorker.register('/sw.js');
     });
   }
 
+  function tagScreen() {
+    // Show title on screen for a bit
+    var container = document.getElementById('log')
+    var h2 = document.createElement('h2');
+    h2.textContent = document.title;
+    var iframe = document.querySelector('iframe') 
+    if (iframe) {
+      h2.textContent += ' ' + iframe.src;
+    }
+    container.appendChild(h2);
+    setTimeout(function() {
+      container.removeChild(h2);
+    }, 6000);
+  }
+
   document.addEventListener('DOMContentLoaded', checkCurrent);
+  document.addEventListener('DOMContentLoaded', tagScreen);
   window.addEventListener('focus', checkCurrent);
   document.addEventListener('visibilitychange', function() {
     if (!document.hidden) {
@@ -41,7 +57,9 @@ navigator.serviceWorker.register('/sw.js');
   setInterval(checkCurrent, 1000 * checkIntervalSeconds);
   setInterval(function() {
     fetch(location.href) // Keep the ServiceWorker cache fresh
-  }, 1000 * 60 * 5);
+  }, 1000 * 60 * 5); // Every 5 minutes
+
+  
 
 })();
 
