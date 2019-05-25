@@ -43,7 +43,7 @@ var overriddenTimeOfDay = null;
     var startTimes = Object.keys(today);
     var current = startTimes[0];
     for (start of startTimes) {
-      if (Number(start) >= timeOfDay) {
+      if (Number(start) <= timeOfDay) {
         current = start;
       }
       if (Number(start) > timeOfDay) {
@@ -66,5 +66,5 @@ var overriddenTimeOfDay = null;
     outOfSession.style.display = session ? "none" : "block";
   }
 
-  setInterval(draw, 5 * 1000);
+  setInterval(draw, 2 * 1000);
 })();
