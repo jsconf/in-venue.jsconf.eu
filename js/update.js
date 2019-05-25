@@ -3,13 +3,15 @@ navigator.serviceWorker.register("/sw.js");
 function poll(url, cb) {
   var pollText = null;
   var checkIntervalSeconds = 30;
-  function doPoll(url, cb) {
+  function poller() {
     var now = Date.now();
-    // Ensure that we bypass the CDN cache on every refresh interval.
-    var queryString = now - (now % checkIntervalSeconds);
-    fetch(url + "?" + queryString, { cache: "reload" }).then(function(
-      response
-    ) {
+    var fetchUrl = url;
+    if (pollText) {
+      // Ensure that we bypass the CDN cache on every refresh interval.
+      var queryString = now - (now % checkIntervalSeconds);
+      fetchUrl += "?" + queryString;
+    }
+    fetch(fetchUrl).then(function(response) {
       if (!response.ok) {
         console.error("Check failed", url, response);
         return;
@@ -20,12 +22,11 @@ function poll(url, cb) {
           return;
         }
         pollText = text;
-        console.info("File hanged", url);
+        console.info("File changed", url);
         cb(url, text);
       });
     });
   }
-  var poller = doPoll.bind(null, url, cb);
   document.addEventListener("DOMContentLoaded", poller);
   window.addEventListener("focus", poller);
   document.addEventListener("visibilitychange", function() {
