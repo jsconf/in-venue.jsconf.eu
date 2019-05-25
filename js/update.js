@@ -1,39 +1,58 @@
 navigator.serviceWorker.register("/sw.js");
 
-(function() {
-  var lastHtml = "";
+function poll(url, cb) {
+  var pollText = null;
   var checkIntervalSeconds = 30;
-  function checkCurrent() {
+  function doPoll(url, cb) {
     var now = Date.now();
     // Ensure that we bypass the CDN cache on every refresh interval.
     var queryString = now - (now % checkIntervalSeconds);
-    fetch(location.href + "?" + queryString, { cache: "reload" }).then(function(
+    fetch(url + "?" + queryString, { cache: "reload" }).then(function(
       response
     ) {
       if (!response.ok) {
-        console.error("Check failed", response);
+        console.error("Check failed", url, response);
         return;
       }
       response.text().then(function(text) {
-        if (lastHtml == text) {
-          console.info("HTML unchanged");
+        if (pollText == text) {
+          console.info("File unchanged", url);
           return;
         }
-        lastHtml = text;
-        console.info("Updating html");
-        var d = new DOMParser();
-        var doc = d.parseFromString(text, "text/html");
-        if (
-          doc.documentElement.getAttribute("version") !=
-          document.documentElement.getAttribute("version")
-        ) {
-          location.reload();
-          return;
-        }
-        setDOM(document, doc.documentElement);
+        pollText = text;
+        console.info("File hanged", url);
+        cb(url, text);
       });
     });
   }
+  var poller = doPoll.bind(null, url, cb);
+  document.addEventListener("DOMContentLoaded", poller);
+  window.addEventListener("focus", poller);
+  document.addEventListener("visibilitychange", function() {
+    if (!document.hidden) {
+      poller();
+    }
+  });
+  setInterval(poller, 1000 * checkIntervalSeconds);
+  setInterval(function() {
+    fetch(url); // Keep the ServiceWorker cache fresh
+  }, 1000 * 60 * 5); // Every 5 minutes
+}
+
+(function() {
+  poll(location.href, function(url, text) {
+    console.info("Updating html");
+    var d = new DOMParser();
+    var doc = d.parseFromString(text, "text/html");
+    if (
+      doc.documentElement.getAttribute("version") !=
+      document.documentElement.getAttribute("version")
+    ) {
+      location.reload();
+      return;
+    }
+    setDOM(document, doc.documentElement);
+  });
 
   function tagScreen() {
     // Show title on screen for a bit
@@ -50,18 +69,7 @@ navigator.serviceWorker.register("/sw.js");
     }, 6000);
   }
 
-  document.addEventListener("DOMContentLoaded", checkCurrent);
   document.addEventListener("DOMContentLoaded", tagScreen);
-  window.addEventListener("focus", checkCurrent);
-  document.addEventListener("visibilitychange", function() {
-    if (!document.hidden) {
-      checkCurrent();
-    }
-  });
-  setInterval(checkCurrent, 1000 * checkIntervalSeconds);
-  setInterval(function() {
-    fetch(location.href); // Keep the ServiceWorker cache fresh
-  }, 1000 * 60 * 5); // Every 5 minutes
 })();
 
 // setDOM from https://github.com/DylanPiercey/set-dom under MIT License
