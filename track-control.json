@@ -1,16 +1,18 @@
 {
-  "DOC1": "For each track enter the start time of a completed track ",
-  "DOC2": "as a floating point time. E.g. 14.3 is 14:30 o'clock.",
+  "DOC1": "For each track enter the start time of the next or current",
+  "DOC2": "session as a floating point time. E.g. 14.3 is 14:30 o'clock.",
   "DOC3": "Only update nextOrCurrentSessionStartTime once the previous ",
   "DOC4": "sesssion is over.",
+  "DOC5": "The value should only be in the future if the track is ",
+  "DOC6": "currently in a break",
   "backtrack": {
-    "nextOrCurrentSessionStartTime": 14.3
-  },
-  "sidetrack": {
     "nextOrCurrentSessionStartTime": 9.3
   },
+  "sidetrack": {
+    "nextOrCurrentSessionStartTime": 11.3
+  },
   "bipocit": {
-    "nextOrCurrentSessionStartTime": 0.0
+    "nextOrCurrentSessionStartTime": 11.0
   },
   "community": {
     "nextOrCurrentSessionStartTime": 11.0
