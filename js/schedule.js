@@ -13,6 +13,7 @@ var overriddenTimeOfDay = null;
 
   var lastChecksum = "";
   var schedule;
+  var trackControl;
   var trackId = document.documentElement.getAttribute("trackid");
   if (!trackId) {
     throw new Error(`Can't find trackid`);
@@ -29,10 +30,20 @@ var overriddenTimeOfDay = null;
     draw();
   });
 
+  poll("/track-control.json", function(url, text) {
+    var t = JSON.parse(text);
+    trackControl = t;
+    draw();
+  });
+
   var currentSession = "initial";
   function draw() {
     if (!schedule) {
       console.warn("No schedule available");
+      return;
+    }
+    if (!trackControl) {
+      console.warn("No track control available");
       return;
     }
     var today = schedule.schedule[schedule.info.currentDay];
@@ -52,6 +63,14 @@ var overriddenTimeOfDay = null;
     }
     var sessions = today[current];
     var session = sessions.find(s => s.trackId == trackId && s.who != "all");
+    var control = trackControl[trackId] || {};
+    if (control.nextOrCurrentSessionStartTime < timeOfDay) {
+      // If the next or current session is not in the future
+      // we assume it is still in session.
+      session = {
+        manualOverride: control.nextOrCurrentSessionStartTime
+      };
+    }
     if (currentSession == JSON.stringify(session)) {
       return;
     }
