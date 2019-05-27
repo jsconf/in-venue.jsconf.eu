@@ -10,6 +10,10 @@ Content in this repo will be shown on the in-venue screens of JSConf/CSSconf EU 
 - Content on a given URL updates automatically.
 - You should never need to manually control a Raspi with a mouse or keyboard.
 
+## Stage manager updates
+
+- When ever your track goes into a break, edit [track-control.json](https://github.com/jsconf/in-venue.jsconf.eu/blob/gh-pages/track-control.json) and enter the time of the next session in your track.
+
 ## Design
 
 - The screen resolution is 1920x1080 (aka 1080p)
@@ -18,7 +22,6 @@ Content in this repo will be shown on the in-venue screens of JSConf/CSSconf EU 
 
 ## Updating content
 
-- For [bipocit-space](https://github.com/jsconf/in-venue.jsconf.eu/blob/gh-pages/bipocit-space/index.html) and [community-lounge](https://github.com/jsconf/in-venue.jsconf.eu/blob/gh-pages/community-lounge/index.html) there are stub files in the respective directories.
 - Content auto-updates when you commit updates GitHub within about 1 minute.
 - If you changed JavaScript, update the `version` attribute on the `<html>` element, and the page will reload.
 
