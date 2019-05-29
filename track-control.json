@@ -6,7 +6,7 @@
   "DOC5": "The value should only be in the future if the track is ",
   "DOC6": "currently in a break",
   "backtrack": {
-    "nextOrCurrentSessionStartTime": 9.3
+    "nextOrCurrentSessionStartTime": 8.54
   },
   "sidetrack": {
     "nextOrCurrentSessionStartTime": 11.3
