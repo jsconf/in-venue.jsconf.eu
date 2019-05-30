@@ -1,12 +1,14 @@
 #!/bin/sh
+# Don't ask.
 sudo hostnamectl set-hostname $(hostname|sed 's/beer/p/')
 
 xset s off
 xset -dpms
 xset s noblank
 
-sudo apt install ntp
-sudo apt install ntpdate
+sudo apt install -y ntp
+sudo apt install -y ntpdate
+# Set timezone
 sudo cp /usr/share/zoneinfo/MET /etc/localtime
 
 unclutter -idle 1 &
