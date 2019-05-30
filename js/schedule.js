@@ -42,6 +42,9 @@ var overriddenTimeOfDay = null;
       nextOrCurrentSessionIsInFuture = true;
     }
     var outOfSession = document.getElementById("out-of-session");
+    if (!outOfSession) {
+      return;
+    }
     outOfSession.style.display = nextOrCurrentSessionIsInFuture
       ? "block"
       : "none";
