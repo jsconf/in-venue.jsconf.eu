@@ -6,15 +6,15 @@
   "DOC5": "The value should only be in the future if the track is ",
   "DOC6": "currently in a break",
   "backtrack": {
-    "nextOrCurrentSessionStartTime": 9.0
+    "nextOrCurrentSessionStartTime": 7.0
   },
   "sidetrack": {
-    "nextOrCurrentSessionStartTime": 11.3
+    "nextOrCurrentSessionStartTime": 7.0
   },
   "bipocit": {
-    "nextOrCurrentSessionStartTime": 11.0
+    "nextOrCurrentSessionStartTime": 7.0
   },
   "community": {
-    "nextOrCurrentSessionStartTime": 11.0
+    "nextOrCurrentSessionStartTime": 7.0
   }
 }
