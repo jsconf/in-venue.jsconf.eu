@@ -10,7 +10,9 @@ sudo apt install -y ntp
 sudo apt install -y ntpdate
 sudo timedatectl set-timezone Europe/Berlin
 
+sudo apt install -y unclutter
 unclutter -idle 1 &
+
 sudo chattr -i /home/pi/.config/chromium/Default/Preferences
 rm -f /home/pi/.config/chromium/Default/Preferences
 cat >/home/pi/.config/chromium/Default/Preferences<<EOF
