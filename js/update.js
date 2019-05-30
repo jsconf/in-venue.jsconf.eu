@@ -62,12 +62,12 @@ function poll(url, cb) {
     h2.textContent = document.title;
     var iframe = document.querySelector("iframe");
     if (iframe) {
-      h2.textContent += " " + iframe.src;
+      h2.innerHTML += "<br>" + iframe.src + "<br>" + Date();
     }
     container.appendChild(h2);
     setTimeout(function() {
       container.removeChild(h2);
-    }, 6000);
+    }, 8000);
   }
 
   document.addEventListener("DOMContentLoaded", tagScreen);
