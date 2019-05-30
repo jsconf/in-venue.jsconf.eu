@@ -71,6 +71,7 @@ function poll(url, cb) {
   }
 
   document.addEventListener("DOMContentLoaded", tagScreen);
+  document.addEventListener("keypress", tagScreen);
 })();
 
 // setDOM from https://github.com/DylanPiercey/set-dom under MIT License
