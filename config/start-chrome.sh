@@ -4,6 +4,11 @@ sudo hostnamectl set-hostname $(hostname|sed 's/beer/p/')
 xset s off
 xset -dpms
 xset s noblank
+
+sudo apt install ntp
+sudo apt install ntpdate
+sudo cp /usr/share/zoneinfo/MET /etc/localtime
+
 unclutter -idle 1 &
 sudo chattr -i /home/pi/.config/chromium/Default/Preferences
 rm -f /home/pi/.config/chromium/Default/Preferences
