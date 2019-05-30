@@ -8,8 +8,7 @@ xset s noblank
 
 sudo apt install -y ntp
 sudo apt install -y ntpdate
-# Set timezone
-sudo cp /usr/share/zoneinfo/MET /etc/localtime
+sudo timedatectl set-timezone Europe/Berlin
 
 unclutter -idle 1 &
 sudo chattr -i /home/pi/.config/chromium/Default/Preferences
